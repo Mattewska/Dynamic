@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html  xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Caompatible" content="ie=edge">
+    <title>Cliente</title>
+    
+     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Raleway:500,600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    
+
+
+
+</head>
+<body>
+    
+
+    <div class="contenedor">
+        <nav>
+            <img src="imagenes/ds.PNG">
+            <div class="enlaces">
+                <a href="#" >Cerrar Sesion</a>
+                
+                <a href="https://api.whatsapp.com/send?phone=3053012188">¿Que quieres comprar hoy?</a>
+                <button class="switch" id="switch">
+                    <span><i class="fas fa-sun"></i></span>
+                    <span><i class="fas fa-moon"></i></span>
+                </button>
+            </div>
+        </nav>
+
+       
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h1 class="center-align titulo">Consulta todos nuestros articulos</h1>
+
+                <div class="carousel center-align">
+                     <div class="carousel-item">
+                        <h2 class="subtitulo">Aseo</h2>
+                        <div class="linea-division"></div>
+                        <p class="sabor">Productos de limpieza</p><br>
+                        <img src="imagenes/aseo.jpg">
+                    </div>
+
+                    <div class="carousel-item">
+                       
+                        <img src="imagenes/aseo2.jpg">
+                    </div>
+
+
+                   
+                    <div class="carousel-item">
+                        <h2 class="subtitulo">Papeleria</h2>
+                        <div class="linea-division"></div>
+                        <p class="sabor">
+                           utiles escolares
+                        </p>
+                        <img src="imagenes/papeleria1.jpg">
+                    </div>
+
+
+                    <div class="carousel-item">
+                        
+                        <img src="imagenes/lapices.jpg">
+                    </div>
+
+                    <div class="carousel-item">
+                        <h2 class="subtitulo">Alimentos</h2>
+                        <div class="linea-division"></div>
+                        <p class="sabor">
+                           Por paquetes
+                        </p>
+                        <img src="imagenes/dulces.jpg">
+                    </div>
+
+
+                    <div class="carousel-item">
+                        
+                        <img src="imagenes/dulces2.jpg">
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="contenedor">
+    <section class="grid">
+            <div class="card">
+                <img src="imagenes/Papeleria.jpg" alt="">
+                <div class="botones">
+                    <a href="https://api.whatsapp.com/send?phone=3053012188" class="boton primario">Consultar Productos De Papeleria</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="imagenes/aseo3.jpg" alt="">
+                <div class="botones">
+                    <a href="https://api.whatsapp.com/send?phone=3053012188" class="boton primario">Consultar Productos De Limpieza</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="imagenes/alimentos.jpg" alt="">
+                <div class="botones">
+                    <a href="https://api.whatsapp.com/send?phone=3053012188" class="boton primario">Cosultar Productos De Alimentos</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    
+    <style>
+
+* {
+     padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body { 
+     background: #F1F1F1;
+  font-family: 'Roboto', sans-serif;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+   font-family: 'Raleway', sans-serif;
+}
+
+
+body.dark {
+  background: #111111;
+}
+
+a {
+  color: #222222;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+
+nav img {
+  width: 50px;
+  height: 50px;
+}
+
+nav {
+  background: #FEFEFE;
+background-color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 20px;
+  border-radius: 5px;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+  -webkit-box-shadow: 10px 10px 20px rgba(170, 170, 170, 0.16);
+          box-shadow: 10px 10px 20px rgba(170, 170, 170, 0.16);
+}
+
+body.dark nav {
+  background: #222222;
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.16);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.16);
+}
+
+body.dark nav a {
+  color: #C8C8C8;
+}
+
+body.dark nav a:hover {
+  color: #FEFEFE;
+}
+
+nav .logotipo {
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+nav .enlaces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav .enlaces a {
+  margin-right: 40px;
+}
+
+nav .enlaces a:hover {
+  color: #707070;
+}
+
+.switch {
+  background: #343D5B;
+  border-radius: 1000px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  outline: none;
+}
+
+.switch::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background: #F1F1F1;
+  top: 0;
+  left: 0;
+  right: unset;
+  border-radius: 100px;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.switch.active {
+  background: orange;
+  color: #000;
+}
+
+.switch.active::after {
+  right: 0;
+  left: unset;
+}
+
+.switch span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  background: none;
+  color: #fff;
+}
+
+
+
+
+.titulo {
+    font-size: 40px;
+    margin-bottom: 40px;
+    color: #ff8000;
+
+}
+
+
+
+.subtitulo {
+    margin: 0;
+    color: #000;
+    display: inline;
+    font-size: 50px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.sabor { 
+    color: #000;
+    margin: 7px 0;
+    font-size: 50px;
+    font-weight: 600;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.7);
+    font-family: 'Dancing Script', cursive;
+    margin-top: 0;
+}
+
+.linea-division {
+    width: 80%;
+    height: 2px;
+    background-color: #36221c;
+}
+
+
+
+.carousel{
+    min-height: 500px;
+
+}
+
+.carousel .carousel-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    width: 500px;
+    height: 500px;
+
+}
+
+.carousel .carousel-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 15px;
+
+
+}
+
+.carousel .indicators .indicator-item{
+    border-radius: 0;
+    transform: rotate(45deg);
+    margin: 0 15px;
+    background: #000;
+}
+
+
+
+
+
+
+.contenedor {
+  max-width: 2000px;
+  width: 95%;
+  margin: auto;
+  padding: 10px 0;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 40px 20px;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  padding: 40px 0;
+}
+
+.grid .card {
+  background: #FEFEFE;
+  padding: 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 10px 20px rgba(170, 170, 170, 0.16);
+          box-shadow: 10px 10px 20px rgba(170, 170, 170, 0.16);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  position: relative;
+  min-height: 195px;
+  margin-top: 50px;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+}
+
+body.dark .grid .card {
+  background: #222222;
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.16);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.16);
+}
+
+.grid .card img {
+  vertical-align: top;
+  border-radius: 7px;
+  position: absolute;
+  top: -40px;
+  width: calc(100% - 40px);
+  max-height: 165px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.grid .card .botones {
+  width: 100%;
+  margin-top: 20px;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 20px;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.grid .card .botones .boton {
+  padding: 10px;
+  color: #fff;
+  width: 209%;
+  display: block;
+  background: #111111;
+  text-align: center;
+  border-radius: 5px;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+}
+
+.grid .card .botones .boton.primario {
+  background: #3E60E9;
+}
+
+.grid .card .botones .boton.primario:hover {
+  background: #254BE6;
+}
+
+.grid .card .botones .boton.secundario {
+  background: #C8C8C8;
+}
+
+</style>
+    
+    
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    
+    
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-f85d9d56-d52f-45ce-a4ae-f11dd038c97c"></div>
+
+
+ <script>
+ document.addEventListener('DOMContentLoaded', () => {
+	 const elementosCarousel = document.querySelectorAll('.carousel');
+	 M.Carousel.init(elementosCarousel,{
+	 	duration: 150,
+	 	dist:-80,
+	 	shift:5,
+	 	padding:5,
+	 	numVisible: 3,
+	 	indicators: true,
+	 	noWrap:false
+	 });
+	  });
+
+	  const btnSwitch = document.querySelector('#switch');
+
+	 btnSwitch.addEventListener('click', () => {
+	 	document.body.classList.toggle('dark');
+	 	btnSwitch.classList.toggle('active');
+
+	 	if(document.body.classList.contains('dark')){
+	 		localStorage.setItem('dark-mode', 'true');
+	 	} else {
+	 		localStorage.setItem('dark-mode', 'false');
+	 	}
+	 });
+
+	 if(localStorage.getItem('dark-mode') === 'true'){
+	 	document.body.classList.add('dark');
+	 	btnSwitch.classList.add('active');
+	 } else {
+	 	document.body.classList.remove('dark');
+	 	btnSwitch.classList.remove('active');
+	 }
+
+ 
+ </script>
+
+
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="recursos/css de proyecto/existencias de bodega.css">
+
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+
+	<!-- Ionic icons -->
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+	<title>Reportes</title>
+
+
+</head>
+
+<body>
+
+
+	<div class="d-flex" id="content-wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar">
+			<div class="logo"><br>
+				<h4 class="text-light font-weight-bold mb-0">Encargado de bodega</h4>
+			</div>
+			<div class="menu">
+				<a th:href="@{/CrearReporte}" class="d-block text-light p-3 border-0"> <i
+						class="icon ion-md-settings lead mr-2"></i>Crear Reportes</a>
+				<a th:href="@{/listartiporeporte}" class="d-block text-light p-3 border-0"> <i
+						class="icon ion-md-settings lead mr-2"></i>Tipo De Reportes</a>
+			</div>
+		</div>
+		<!-- Fin sidebar -->
+
+		<div class="w-100">
+
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<div class="container">
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+              <!-- reportes -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <!-- Boton -->
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#reporte">
+                            Generar Reportes
+                        </button>
+
+                        <!-- Formulario -->
+                        <div class="modal fade" id="reporte" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Generar Reporte de Empleados</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form action="report/bodega/download" method="GET">
+                                            <div class="form-group">
+                                                <label class="form-label">Tipo</label> 
+                                                <input type="text" id="tipo" name="tipo" value="PDF" class="form-control mb-4" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Tipo de Reporte</label>
+                                                <select  class="form-control" name="tipo_reporte" style="margin-bottom: 10px">
+                                                    <option value="1">Faltante</option>
+                                                    <option value="2">Sobrante</option>
+                                                    <option value="3">Mal Estado</option>
+                                                </select>
+                                            </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success">Generar</button>
+                                    </div>
+                                        
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+						<!--menu derecho  -->
+						<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+							<li class="nav-item dropdown">
+								<a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img src="imagenes/perfilmateo.jpeg" class="img-fluid rounded-circle avatar mr-2">
+									Juan Jaramillo
+								</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href=" bodega.html">Mi perfil</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" th:href="@{/Dynamic_System}">Cerrar sesión</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!-- Fin Navbar -->
+
+
+			<!-- contenido central -->
+			<section>
+
+
+				<h1 class="text-center">Reportes</h1>
+
+
+
+				<table id="Reporte" class="table table-bordered  display nowrap" cellspacing="15" width="120%">
+					<thead>
+						<tr>
+							<th>Codigo de Reporte</th>
+							<th>Cantidad</th>
+							<th>Producto</th>
+							<th>Tipo de Reporte</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="reportes:${reportes}">
+							<td th:text="${reportes.idReporte}"></td>
+							<td th:text="${reportes.cantidad}"></td>
+							<td th:text="${reportes.pReportes.nombre}"></td>
+							<td th:text="${reportes.tipoReportes.nombreReporte}"></td>
+
+							<td>
+								<a th:href="@{/editarReporte/}+${reportes.idReporte}" class="btn btn-warning">Editar</a>
+								<a th:onclick="eliminarReporte([[${reportes.idReporte}]])"
+									class="btn btn-danger">Eliminar</a>
+							</td>
+						</tr>
+
+
+					</tbody>
+				</table>
+		</div>
+		</section>
+	</div>
+	</div>
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="reporte.js"></script>
+	
+	    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
+
+
+	<!--   Datatables-->
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+	<!-- extension responsive -->
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+	<style>
+		body {
+			overflow: auto;
+			font-family: 'Muli', sans-serif;
+			font-weight: 300;
+			color: var(--primary);
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		.bg-primary {
+			background-color: var(--primary) !important;
+		}
+
+		.bg-light {
+			background-color: var(--light) !important;
+		}
+
+		.bg-grey {
+			background-color: var(--grey) !important;
+		}
+
+		.bg-mix {
+			background: linear-gradient(180deg, var(--light) 50%, var(--grey) 0);
+		}
+
+		.btn-primary {
+			background-color: var(--primary);
+			border: 0;
+		}
+
+
+		.btn-primary:hover {
+			background-color: var(--primary);
+		}
+
+		#sidebar {
+			width: 20%;
+			height: 100vh;
+			background: #000;
+		}
+
+		#sidebar-container .logo {
+			padding: 0.875rem 1.25rem;
+		}
+
+
+		.avatar {
+			max-width: 35px;
+		}
+
+
+
+
+
+		/* secciÃ³n */
+		section {
+			width: 70%;
+			height: 20%;
+
+			margin: 15px 180px;
+		}
+
+		section tr :hover {
+			background-color: rgb(184, 190, 190);
+		}
+
+
+		table thead {
+			background-color: #f38609;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			var table = $('#Reporte').DataTable({
+				lengthChange: false,
+				buttons: [
+					'excel', 'pdf', 'colvis']
+			});
+
+			table.buttons().container()
+				.appendTo('#Reporte_wrapper .col-md-6:eq(0)');
+		});
+	</script>
+</body>
+
+</html>

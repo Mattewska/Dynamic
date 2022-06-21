@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="../css de proyecto/posicionproductobodega.css">
+
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+
+	<!-- Ionic icons -->
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="../css/admi3.css">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+	<title>Historial de Entregas</title>
+</head>
+
+<body>
+
+	<div class="d-flex" id="content-wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar-container" class="bg-primary">
+			<div class="logo">
+
+				<h4 class="text-light font-weight-bold mb-0">Domiciliario</h4>
+			</div>
+			<div class="menu">
+				<a th:href="@{/Entregas_en_Curso}" class="d-block text-light p-3 border-0"><i
+						class="icon ion-md-copy lead mr-2"></i>
+					Entregas Disponibles</a>
+				<a th:href="@{/Registrar_Entregas}" class="d-block text-light p-3 border-0"><i
+						class="icon ion-md-copy lead mr-2"></i>
+					Registrar Entrega</a>
+				<a th:href="@{/Historial_Entregas}" class="d-block text-light p-3 border-0"><i
+						class="icon ion-md-stats lead mr-2"></i>
+					Historial de Entrega</a>
+
+			</div>
+		</div>
+		<!-- Fin sidebar -->
+
+		<div class="w-100">
+
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<div class="container">
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<!-- boton busqueda -->
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<!--menu derecho  -->
+						<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+							<li class="nav-item dropdown">
+								<a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img src="imagenes/perfil.jpg" class="img-fluid rounded-circle avatar mr-2">
+									<span th:text="${identificador.nombre}"> </span> <span th:text="${identificador.apellido}"></span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" th:href="@{/Dashboard}">Mi perfil</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" th:href="@{/Dynamic_System}">Cerrar sesión</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- Fin Navbar -->
+
+			<!-- Page Content :bienvenida-->
+			<div id="content" class=" w-100">
+
+				<!-- contenido central -->
+				<section>
+					<style>
+						table thead {
+							background-color: #f38609;
+
+						}
+					</style>
+
+					</head>
+
+					<body>
+
+						<h1 href="Controlador?accion=listar" class="text-center">Historial de Entregas</h1>
+
+
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-12">
+									<table id="Historial" class="table table-bordered  display nowrap" cellspacing="15"
+										width="120%">
+
+										<thead>
+											<tr style="background-color: rgb(255, 153, 0);">
+												<th>Codigo del Domicilio</th>
+												<th>Fecha</th>
+												<th>Codigo de Venta Asociada</th>
+												<th>Estado</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+
+											<tr th:each="domi:${domicilios}">
+												<td th:text="${domi.id_domicilio}"></td>
+												<td th:text="${domi.fecha_domicilio}"></td>
+												<td th:text="${domi.domicilio.id_factura}"></td>
+                                                <td th:text="${domi.eDomicilios.nombre_estado}"></td>
+												<td>
+
+
+													<a th:onclick="eliminar([[${domi.id_domicilio}]])"
+														class="btn btn-danger"><i class="fas fa-trash"></i></a>
+													<a th:href="@{/editar/}+${domi.id_domicilio}"
+														class="btn btn-warning"><i class="fas fa-eraser"></i></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+
+
+						<!-- Optional JavaScript -->
+						<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+						<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+							integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+							crossorigin="anonymous"></script>
+						<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+							integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+							crossorigin="anonymous"></script>
+						<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+							integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+							crossorigin="anonymous"></script>
+
+						<!--   Datatables-->
+						<script type="text/javascript"
+							src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+						<!-- extension responsive -->
+						<script
+							src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+
+						<!-- Jquery -->
+						<script src="https://code.jquery.com/jquery-3.6.0.js"
+							integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+							crossorigin="anonymous"></script>
+
+						<!-- Sweet Alert -->
+						<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+						<!-- js alertas-->
+						<script src="funciones.js"></script>
+
+				</section>
+				</main>
+
+				<Style>
+					:root {
+						--primary: #000;
+						--light: #ffffff;
+						--grey: #efefef;
+					}
+
+					body {
+						overflow: auto;
+						font-family: 'Muli', sans-serif;
+						font-weight: 300;
+						color: var(--primary);
+					}
+
+					a:hover {
+						text-decoration: none;
+					}
+
+					.bg-primary {
+						background-color: var(--primary) !important;
+					}
+
+					.bg-light {
+						background-color: var(--light) !important;
+					}
+
+					.bg-grey {
+						background-color: var(--grey) !important;
+					}
+
+					.bg-mix {
+						background: linear-gradient(180deg, var(--light) 50%, var(--grey) 0);
+					}
+
+					.btn-primary {
+						background-color: var(--primary);
+						border: 0;
+					}
+
+					.btn-primary:hover {
+						background-color: var(--primary);
+					}
+
+					#sidebar-container {
+						min-height: 100vh;
+					}
+
+					#sidebar-container .logo {
+						padding: 0.875rem 1.25rem;
+					}
+
+					#sidebar-container .menu {
+						width: 18rem;
+					}
+
+
+
+					.avatar {
+						max-width: 50px;
+					}
+
+					/* sección */
+					section {
+						width: 60%;
+						height: 70%;
+						position: left;
+						margin: 60px 200px;
+					}
+
+					section tr td:hover {
+						background-color: rgb(175, 235, 230);
+					}
+
+
+					section tr th {
+						background-color: rgb(255, 153, 0);
+					}
+
+					.btn-success {
+
+						position: left;
+						padding-left: -105px;
+
+					}
+				</Style>
+
+				<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+				<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+				<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+				<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+				<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+				<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+				<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+				<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+				<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+				<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+				<script>
+					$(document).ready(function () {
+						var table = $('#Historial').DataTable({
+							lengthChange: false,
+							buttons: [
+								'excel', 'pdf', 'colvis']
+						});
+
+						table.buttons().container()
+							.appendTo('#Historial_wrapper .col-md-6:eq(0)');
+					});
+				</script>
+
+</body>
+
+</html>

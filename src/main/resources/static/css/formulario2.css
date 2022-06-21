@@ -1,0 +1,14 @@
+body{
+		background: #162B4E;
+		background: linear-gradient(to right, #fff, #162B4E,#000);
+		color: #fff;
+	}
+
+	.container{
+		margin-top: 150px;
+	}
+		.bg{
+			background-image: url("../img proyecto/miscelanea.jpeg" );
+			background-position: center center;
+
+		}

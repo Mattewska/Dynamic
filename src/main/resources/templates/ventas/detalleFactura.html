@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="//www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Detalle de Factura</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Styles -->
+<link rel="stylesheet" href="/css/listarventas.css">
+</head>
+
+<body>
+	<div class="d-flex" id="content-wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar-container" class="bg-primary">
+			<div class="logo">
+				<h4 class="text-light font-weight-bold">Vendedor</h4>
+			</div>
+			<div class="menu">
+				<a th:href="@{/listarFactura}"
+					class="d-block text-light p-3 border-0"><i
+					class="icon ion-md-apps lead mr-2"></i> Listar Factura</a> <a
+					th:href="@{/newFactura}" class="d-block text-light p-3 border-0"><i
+					class="icon ion-md-people lead mr-2"></i> Registrar Factura</a>
+			</div>
+		</div>
+		<!-- Fin sidebar -->
+
+		<div class="w-100">
+
+			<!-- Navbar -->
+			<nav
+				class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<div class="container">
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<form class="form-inline position-relative d-inline-block my-2">
+							<input class="form-control" type="search" placeholder="Buscar"
+								aria-label="Buscar">
+							<button class="btn position-absolute btn-search" type="submit">
+								<i class="icon ion-md-search"></i>
+							</button>
+						</form>
+						<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+							<li class="nav-item dropdown"><a
+								class="nav-link text-dark dropdown-toggle" href="#"
+								id="navbarDropdown" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"> <img
+									src="imagenes/perfilana.jpeg"
+									class="img-fluid rounded-circle avatar mr-2"> Vendedor
+							</a>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="vendedor">Mi perfil</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" th:href="@{/Dynamic_System}">Cerrar
+										sesión</a>
+								</div></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- Fin Navbar -->
+
+			<!-- Page Content -->
+			<div id="content" class="bg-grey w-100">
+				<section>
+					<div class="container mt-4">
+						<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-content">
+										<div class="card-header">
+											<h1>Detalle de Factura</h1>
+										</div>
+										<div class="card-body">
+											<table class="table table-bordered  display nowrap"
+												id="factura">
+												<thead style="background-color: rgb(255, 153, 0);">
+													<tr>
+														<th>Codigo del Detalle</th>
+														<th>Codigo de la Factura</th>
+														<th>Cantidad</th>
+														<th>Precio</th>
+														<th>Productos</th>
+														<th>Acciones</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="detalle:${detalleF}">
+														<td th:text="${detalle.id_detalle}"></td>
+														<td th:text="${detalle.factura.id_factura}"></td>
+														<td th:text="${detalle.cantidad}"></td>
+														<td th:text="${detalle.precio}"></td>
+														<td th:text="${detalle.detalleProducto.nombre}"></td>
+														<td><a
+															th:href="@{/editarDetalle/}+${detalle.id_detalle}"
+															class="btn btn-warning">Editar </a> <a
+															th:onclick="eliminarDetalle([[${detalle.id_detalle}]])"
+															class="btn btn-danger">Eliminar </a> <a
+															th:href="@{/nuevoDetalle/}+${detalle.factura.id_factura}"
+															class="btn btn-success">Nuevo Detalle</a>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="card-footer">
+											<a th:href="@{/newFactura}" class="btn btn-danger">Nueva
+												Factura</a> 
+												<a th:href="@{/listarFactura}"
+												class="btn btn-warning"><i
+												></i>Volver</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<!-- Jquery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous"></script>
+
+	<!-- Sweet Alert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<!-- js alertas-->
+	<script src="../funciones.js"></script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+	<script
+		src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
+	<script>
+		$(document).ready(
+				function() {
+					var table = $('#factura').DataTable({
+						lengthChange : false,
+						buttons : [ 'excel', 'pdf', 'colvis' ]
+					});
+
+					table.buttons().container().appendTo(
+							'#factura_wrapper .col-md-6:eq(0)');
+				});
+	</script>
+</body>
+
+</html>

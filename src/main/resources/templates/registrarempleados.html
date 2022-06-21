@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+		<!-- Styles -->
+		<link rel="stylesheet" href="assets/css/style.css">
+
+		<!-- Google fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+
+		<!-- Ionic icons -->
+		<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+		<title>Registrar Empleados</title>
+
+        <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+            <link rel="stylesheet" href=
+        "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                integrity=
+        "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                crossorigin="anonymous">
+
+	</head>
+
+<body>
+	<div>
+		<div class="d-flex" id="content-wrapper">
+
+			<!-- Sidebar -->
+			<div id="sidebar-container" class="bg-primary">
+				<div class="logo"><br>
+					<h4 class="text-light font-weight-bold mb-0">Administradora</h4>
+				</div>
+				<div class="menu">
+					<a th:href="@{/empleados}" class="d-block text-light p-3 border-0"><i
+							class="ion-ios-people lead mr-3"></i>Empleados</a>
+					<a th:href="@{/registrarempleados}" class="d-block text-light p-3 border-0"><i
+							class="icon ion-ios-person-add lead mr-3"></i>Registrar Empleados</a>
+					<a th:href="@{/registroproductos}" class="d-block text-light p-3 border-0"><i
+							class="icon ion-md-clipboard lead mr-3"></i>Registrar Nuevo producto</a>
+					<a th:href="@{/inventario}" class="d-block text-light p-3 border-0"><i
+							class="icon ion-md-copy lead mr-3"></i>Inventario</a>
+			        <a th:href="@{/Enviar_Correos}" class="d-block text-light p-3 border-0"><i class="icon ion-md-copy lead mr-3"></i>Enviar Correo</a>
+				</div>
+			</div>
+			<!-- Fin sidebar -->
+
+			<div class="w-100">
+
+				<!-- Navbar -->
+				<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+					<div class="container">
+
+						<button class="navbar-toggler" type="button" data-toggle="collapse"
+							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+
+							<!--menu derecho  -->
+							<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+								<li class="nav-item dropdown">
+									<a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown"
+										role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<img src="imagenes/perfilana.jpeg"  class="img-fluid rounded-circle avatar mr-2">
+										Maria del Pilar Orozco
+									</a>
+									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="administrador">Mi perfil</a>
+									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+						<div class="dropdown-divider"></div>
+                       <form class="d-flex bg-danger"  th:action="@{/logout}" method="post">
+			              <input class="btn btn-danger" type="submit"value="cerrar sesion"/>
+			           </form>
+                    </div>
+									</div>
+								</li>
+							</ul>
+					</div>
+				</nav>
+				<!-- Fin Navbar -->
+
+				<!-- contenido central -->
+				<div class="container form-group">
+					<form th:action="@{/salvar}" th:object="${usuario}" method="POST" id="rempleados">
+						<h3>Usuarios</h3>
+
+
+
+						<div class="form-group">
+							<label class="control-label">Nombre</label>
+							<input class="form-control" name="nombre" type="text" th:field="*{nombre}"
+								placeholder="Nombre" />
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label">Apellido</label>
+							<input class="form-control" name="apellido" type="text" th:field="*{apellido}"
+								placeholder="Apellido" />
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Contraseña</label>
+							<input class="form-control" name="clave" id="clave" type="password" th:field="*{clave}"
+								placeholder="Contraseña" />      
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Telefono</label>
+							<input class="form-control" maxlength="10" name="telefono" type="number" th:field="*{telefono}"
+								placeholder="Telefono" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Fecha Nacimiento</label>
+							<input class="form-control" name="fecha_nacimiento" max="2004-06-21" type="date" th:field="*{fecha_nacimiento}" />
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Direccion</label>
+							<input class="form-control" name="direccion" type="text" th:field="*{direccion}"
+								placeholder="Direccion" />
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label">Correo</label>
+							<input class="form-control" name="usuario" type="text" th:field="*{correo}"
+								placeholder="Correo" />
+						</div>
+						
+						
+						<div class="form-group">
+							<label class="control-label">Rol</label>
+							<select  name="rol" class="form-control" th:field="*{rol.idRol}">
+								<option value="">Seleccionar Rol</option>
+								<option th:each="rol:${roles}" th:value="${rol.idRol}" th:text="${rol.rolName}" />
+							</select>
+						</div>
+
+
+						<div class="footer">
+							<input type="submit" value="Guardar" class="btn btn-danger">
+						</div>
+
+					</form>
+				</div>
+
+
+
+			</div>
+
+
+			<!-- Optional JavaScript -->
+			<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+			<script src=" https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script>
+			<script src="funciones.js"></script>
+			<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+			<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+				integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+				crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+				integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+				crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+				integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+				crossorigin="anonymous"></script>
+            <script src="registroempleados.js"></script>    
+
+			<!--   Datatables-->
+			<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+
+			<!-- extension responsive -->
+			<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+
+
+			<script>
+				$(document).ready(function () {
+					$('#example').DataTable({
+						responsive: true
+					});
+				});
+
+
+				const $btnExportar = document.querySelector("#btnExportar"),
+					$tabla = document.querySelector("#tabla");
+
+				$btnExportar.addEventListener("click", function () {
+					let tableExport = new TableExport($tabla, {
+						exportButtons: false, // No queremos botones
+						filename: "Reporte de prueba", //Nombre del archivo de Excel
+						sheetname: "Reporte de prueba", //Tï¿½tulo de la hoja
+					});
+					let datos = tableExport.getExportData();
+					let preferenciasDocumento = datos.tabla.xlsx;
+					tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+				});
+			</script>
+
+<script>
+    const togglePassword = document
+        .querySelector('#togglePassword');
+
+    const password = document.querySelector('#clave');
+
+    togglePassword.addEventListener('click', () => {
+
+        // Toggle the type attribute using
+        // getAttribure() method
+        const type = password
+            .getAttribute('type') === 'clave' ?
+            'text' : 'clave';
+              
+        password.setAttribute('type', type);
+
+        // Toggle the eye and bi-eye icon
+        this.classList.toggle('bi-eye');
+    });
+</script>
+
+			<style>
+				:root {
+					--primary: #000;
+					--light: #ffffff;
+					--grey: #efefef;
+				}
+
+				body {
+					overflow: auto;
+					font-family: 'Muli', sans-serif;
+					font-weight: 300;
+					color: var(--primary);
+				}
+
+				a:hover {
+					text-decoration: none;
+				}
+
+				.bg-primary {
+					background-color: var(--primary) !important;
+				}
+
+				.bg-light {
+					background-color: var(--light) !important;
+				}
+
+				.bg-grey {
+					background-color: var(--grey) !important;
+				}
+
+				.bg-mix {
+					background: linear-gradient(180deg, var(--light) 50%, var(--grey) 0);
+				}
+
+				.btn-primary {
+					background-color: var(--primary);
+					border: 0;
+				}
+
+				.btn-primary:hover {
+					background-color: var(--primary);
+				}
+
+				#sidebar-container {
+					min-height: 100vh;
+				}
+
+				#sidebar-container .logo {
+					padding: 0.875rem 1.25rem;
+				}
+
+				#sidebar-container .menu {
+					width: 18rem;
+				}
+
+
+
+				.avatar {
+					max-width: 35px;
+				}
+
+				/* secciï¿½n */
+				section {
+					width: 60%;
+					height: 70%;
+					position: left;
+					margin: 60px 200px;
+				}
+
+				section tr td:hover {
+					background-color: rgb(184, 190, 190);
+				}
+
+				table thead {
+					background-color: #f38609;
+				}
+
+                label.error{
+
+margin: 0px;
+display: block;
+color: red;
+}
+
+input.error{
+border: 1px solid red;
+color: red;
+}
+
+form i {
+            margin-left: 960px;
+            padding-bottom: 100px;
+            cursor: pointer;
+        }
+        
+        		input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+
+
+			</style>
+
+
+</body>
+
+</html>
+</body>
+
+</html>
