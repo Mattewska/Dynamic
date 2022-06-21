@@ -25,7 +25,7 @@ public class InicioControler {
 	@Autowired
 	private InterfaceRolService serviceR;
 
-	@GetMapping("/Dynamic_System")
+	@GetMapping({"/","/Dynamic_System",""})
 	public String ejemplo() {
 		return "PaginaInicio/paginicio";	
 	}

@@ -34,7 +34,7 @@ public class ProductoControl {
 	
 	
 	
-	@RequestMapping({"/","/administrador",""})
+	@GetMapping("/administrador")
     public String administrador(){
     return "administrador";
     }
